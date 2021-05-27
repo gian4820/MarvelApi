@@ -1,0 +1,94 @@
+.navbar{
+    background-color: #ed1d24;
+}
+
+a{
+    text-decoration: none;
+}
+
+.img-thumbnail{
+    border: 0;
+    padding: 0;
+    width: 300px;
+    height: 300px;
+}
+
+.img-thumbnail:hover{
+    border: 0;
+    padding: 0;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ed1d24;
+}
+
+a h3{
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+a h3:hover{
+    color: #ed1d24;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.page-link{
+    background-color: #ed1d24;
+    color: #fff;
+    border: 1px solid #212529;
+}
+
+.page-link:hover{
+    background-color: #fff;
+    color: #ed1d24;
+}
+
+.nav-link{
+    color: #fff;  
+}
+
+.nav-link:hover{
+    color: #212529;  
+}
+
+.col-md-4{
+    display: flex;
+    justify-content: center;
+}
+
+label{
+    display: flex;
+    color: #ed1d24;
+    border: 1px solid #ed1d24;
+    border-top: 0;
+}
+
+label:hover{
+    background-color: #ed1d24;
+    display: flex;
+    color: #fff;
+    border: 2px solid #ed1d24;
+}
+
+
+h1{
+    color: #ed1d24;
+    text-align: center;
+    text-decoration: underline;
+}
+
+
+#marvel-row{
+    margin: 0 auto;
+}
+
+
+#newLis a {
+    width: 100px;
+    text-align: center;
+    border-radius: 7px;
+}
