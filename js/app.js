@@ -56,9 +56,7 @@ const marvel = {
 marvel.render(npag);
 
 
-
 /* ----------------------Botones---------------------------------- */
-
 
 
 //Boton Next page
@@ -94,37 +92,76 @@ let notificacion = document.getElementsByClassName('alert');
 let alertContent = '';
 let cont_favorites;
 let arrId = [];
+let tiempo;
+
 
 function favoritos(){
-  
-  for (var x=0; x < checkboxes.length; x++) {
-    if (checkboxes[x].checked) {
-      cont_favorites = cont_favorites + 1;
-      arrId.push(checkboxes[x].id);
-    }
-  }
 
+//recorremos el array para verificar checkboxes, si hay, almacena el id en el array
+for(const checkbox in checkboxes){
+  if(checkboxes[checkbox].checked){
+    arrId.push(checkboxes[checkbox].id)
+  }
+}
+
+//ordenamos el array
+arrId = arrId.sort();
+
+//si hay elementos duplicados los eliminamos
+for(let i =0; i < arrId.length; i++){
+  if(arrId[i+1] === arrId[i]){
+    arrId.splice(i, 1);
+  }
+}
+
+//mostramos las alertas de los favoritos
   if(arrId.length >0){
-    console.log("Hay por lo menos un elemento");
-    alertContent+=`
-    <div class="alert alert-dark mt-1 alert-dismissible fade show" role="alert">
-       <b>Your favourites Super Hero's are:</b><br> ${arrId}
-
-       </div>
-    `;
-
+    alert_yes();
   }else{
-    console.log("No hay elementos");
-    alertContent+=`
-    <div class="alert alert-warning alert-dismissible fade show mt-1" role="alert">
-       <b>No favourite Super Hero!</b>
-
-       </div>
-    `;
+    alert_no();
   }
 
+//funcion alerta si existen superheroes favoritos
+function alert_yes(){
+  alertContent=`
+  <div class="fixed-bottom alert alert-success mt-1 alert-dismissible fade show" role="alert">
+     <b>Favourites Super Hero's:</b>
+     <br> ${arrId}
+     <br> <em>Please, before going to another page, save your Favourite Hero</em>
+  </div>
+  `
+  ;
+}
 
+//funcion alerta si no existen superheroes
+  function alert_no(){
+    alertContent=`
+    <div class="fixed-bottom alert alert-primary alert-dismissible fade show mt-1" role="alert">
+       <b>No favourite SuperHero saved!</b> </br>
+       <em>Please, before going to another page, save your Favourite Hero</em>
+    </div>
+    `;
+  }
+//Insertamos el HTML de las alertas
   alertas.innerHTML = alertContent;
+
+
+//Funcion borrado de Alertas a 2,5 segundos.
+  function borradoAlerta() {
+    tiempo = setTimeout(alert_blank, 2500);
+  }
+
+  function alert_blank(){
+    alertContent=`
+    <div class="fixed-bottom"></div>
+    `;
+  alertas.innerHTML = alertContent;
+  }
+
+  borradoAlerta();
+
+
 }
 
 
+/* ---------------------------Buscar---------------------------------------------- */

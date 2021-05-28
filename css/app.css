@@ -74,21 +74,40 @@ label:hover{
     border: 2px solid #ed1d24;
 }
 
-
 h1{
     color: #ed1d24;
     text-align: center;
     text-decoration: underline;
-}
+    margin-top: 100px;
 
+    
+}
 
 #marvel-row{
     margin: 0 auto;
 }
 
-
 #newLis a {
     width: 100px;
     text-align: center;
     border-radius: 7px;
+}
+
+
+.alert{
+    width: 800px;
+    margin: 0 auto;
+}
+
+.page-footer{
+    background-color: #ed1d24;
+    color: #fff;
+}
+
+.page-footer a{
+    color: blue;
+}
+
+.page-footer a:hover{
+    color: #fff;
 }
