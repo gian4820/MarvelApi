@@ -170,6 +170,8 @@ function alert_yes(){
 let valor;
 let nombreBuscado;
 let urlA = 'https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=e79c7dec82736a547b2894c491821b67&hash=1a09b1ae4aec506aefb3baf1dc5078bb';
+const container = document.querySelector('#marvel-row');
+let contentHTML = '';
 
 
 function searchHero(){
@@ -177,17 +179,35 @@ function searchHero(){
   queryParameterName = urlQueryParameters.get("search"),
   search = document.getElementById("search").value;
 
-
-
-
   
   fetch(urlA)
       .then(res => res.json())
       .then((json) => {
+       // console.log(json.data.results)
+
         for (let hero of json.data.results) {
-          console.log(hero.name);
-        
+
+
+          if(hero.name.toUpperCase() == search.toUpperCase()){
+            console.log("estoy en el if");
+         
+            let urlHero = hero.urls[0].url;
+            contentHTML += `
+                <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex">
+                  <a href="${urlHero}" target="_blank">
+                    <img src="${hero.thumbnail.path}.${hero.thumbnail.extension}" alt="${hero.name}" class="img-thumbnail">
+                    <h3 class="title">${hero.name}</h3>
+                    <label class="mb-5 justify-content-center"><input type="checkbox" class="check" id="${hero.name}" value="first_checkbox"><i class="far fa-heart"></i></label>
+                  </a>
+                </div>
+                      `;
+
+                      search = '';
+
+            
+          }
         }
+        container.innerHTML = contentHTML;
       })
 
 
