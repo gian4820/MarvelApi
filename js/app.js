@@ -165,3 +165,31 @@ function alert_yes(){
 
 
 /* ---------------------------Buscar---------------------------------------------- */
+
+
+let valor;
+let nombreBuscado;
+let urlA = 'https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=e79c7dec82736a547b2894c491821b67&hash=1a09b1ae4aec506aefb3baf1dc5078bb';
+
+
+function searchHero(){
+  let urlQueryParameters = new URLSearchParams(window.location.search),
+  queryParameterName = urlQueryParameters.get("search"),
+  search = document.getElementById("search").value;
+
+
+
+
+  
+  fetch(urlA)
+      .then(res => res.json())
+      .then((json) => {
+        for (let hero of json.data.results) {
+          console.log(hero.name);
+        
+        }
+      })
+
+
+}
+
