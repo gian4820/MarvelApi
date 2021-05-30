@@ -167,32 +167,30 @@ function alert_yes(){
 /* ---------------------------Buscar---------------------------------------------- */
 
 
-let valor;
+
 let nombreBuscado;
 let urlA = 'https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=e79c7dec82736a547b2894c491821b67&hash=1a09b1ae4aec506aefb3baf1dc5078bb';
 const container = document.querySelector('#marvel-row');
+let boton_search = document.getElementById('boton_search');
 let contentHTML = '';
+let contentButton = '';
 
 
 function searchHero(){
   let urlQueryParameters = new URLSearchParams(window.location.search),
   queryParameterName = urlQueryParameters.get("search"),
+  search_inp = document.getElementById("search");
   search = document.getElementById("search").value;
-
   
   fetch(urlA)
-      .then(res => res.json())
-      .then((json) => {
-       // console.log(json.data.results)
+        .then(res => res.json())
+        .then((json) => {
 
         for (let hero of json.data.results) {
-
-
           if(hero.name.toUpperCase() == search.toUpperCase()){
-            console.log("estoy en el if");
          
             let urlHero = hero.urls[0].url;
-            contentHTML += `
+            contentHTML = `
                 <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex">
                   <a href="${urlHero}" target="_blank">
                     <img src="${hero.thumbnail.path}.${hero.thumbnail.extension}" alt="${hero.name}" class="img-thumbnail">
@@ -201,13 +199,16 @@ function searchHero(){
                   </a>
                 </div>
                       `;
+            container.innerHTML = contentHTML;
 
-                      search = '';
+            search_inp.disabled = true;
 
+            contentButton= `<i class="fas fa-arrow-left"></i>`;
+            boton_search.innerHTML = contentButton;
             
           }
         }
-        container.innerHTML = contentHTML;
+
       })
 
 
